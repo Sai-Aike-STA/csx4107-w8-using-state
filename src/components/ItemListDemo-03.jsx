@@ -34,7 +34,7 @@ function ItemListDemo03() {
     }
 
     // A new array is created instead of changing the old state array.
-    setItems((previousItems) => {
+    setItems(previousItems => {
       return [...previousItems, newItem]
     })
   }
