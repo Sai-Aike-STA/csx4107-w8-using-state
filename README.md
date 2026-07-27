@@ -9,9 +9,9 @@ Local repo name: `csx4107-w8-using-state`
 
 The app contains three explained examples:
 
-1. `CounterDemo-01.jsx` shows how `useState` remembers a number and how a setter updates the UI.
-2. `RegisterDemo-02.jsx` shows a controlled input whose value is stored in state.
-3. `ItemListDemo-03.jsx` shows how to add objects to a state array and render them with `map`.
+1. `Demo01-Counter.jsx` shows how `useState` remembers a number and how a setter updates the UI.
+2. `Demo02-ControlledInput.jsx` shows a controlled input whose value is stored in state.
+3. `Demo03-ItemList.jsx` shows how to add with the spread operator, modify with `map`, delete with `filter`, and render an array.
 
 Each example has a working demo followed by notes that explain the important code, similar to the Week 5 jQuery reference demos.
 

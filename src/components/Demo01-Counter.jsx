@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function CounterDemo01() {
+function Demo01Counter() {
   // useState gives the component a value that lasts between renders.
   // A render happens when React runs the component to create or update the UI.
   const [count, setCount] = useState(0)
@@ -272,4 +272,4 @@ return <p>{username}</p>`}</code>
   )
 }
 
-export default CounterDemo01
+export default Demo01Counter

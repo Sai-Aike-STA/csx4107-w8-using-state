@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function ItemListDemo03() {
+function Demo03ItemList() {
   // This static array supplies the first value for the items state.
   const initItems = [
     {
@@ -39,6 +39,33 @@ function ItemListDemo03() {
     })
   }
 
+  function modifyItem(targetIndex) {
+    // map creates a new array and visits every existing item.
+    setItems((previousItems) => {
+      return previousItems.map((currentItem, currentIndex) => {
+        if (currentIndex === targetIndex) {
+          // A new object replaces only the item at the matching index.
+          return {
+            ...currentItem,
+            amount: Number(currentItem.amount) + 1,
+          }
+        }
+
+        // Every item at a different index stays unchanged.
+        return currentItem
+      })
+    })
+  }
+
+  function deleteItem(targetIndex) {
+    // filter creates a new array without the item at the matching index.
+    setItems((previousItems) => {
+      return previousItems.filter(
+        (currentItem, currentIndex) => currentIndex !== targetIndex,
+      )
+    })
+  }
+
   function toggleLoading() {
     setIsLoading((previousLoading) => !previousLoading)
   }
@@ -50,7 +77,7 @@ function ItemListDemo03() {
 
   return (
     <section className="demo-section">
-      <h2>Demo 03: Add Objects to an Item List</h2>
+      <h2>Demo 03: Add, Modify, and Delete List Items</h2>
       <p>
         This demo follows the item-list example used during the class
         explanation.
@@ -115,6 +142,7 @@ function ItemListDemo03() {
             <tr>
               <th>Name</th>
               <th>Amount</th>
+              <th>Actions</th>
             </tr>
           </thead>
 
@@ -123,6 +151,16 @@ function ItemListDemo03() {
               <tr key={index}>
                 <td>{item.name}</td>
                 <td>{item.amount}</td>
+                <td>
+                  <div className="button-row">
+                    <button type="button" onClick={() => modifyItem(index)}>
+                      Add 1 to amount
+                    </button>
+                    <button type="button" onClick={() => deleteItem(index)}>
+                      Delete
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -145,9 +183,35 @@ function ItemListDemo03() {
         <h3>Code explanation starts here</h3>
         <p>
           The main concept is an array of objects stored in state. Each object
-          is one table item. Adding an item creates a new object and then
-          creates a new array that contains the old items and the new item.
+          is one table item. React state arrays should not be changed directly.
+          Each operation creates a new array:
         </p>
+        <table className="item-table">
+          <thead>
+            <tr>
+              <th>Operation</th>
+              <th>Array tool</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Add</td>
+              <td>Spread operator</td>
+              <td>Copies old items and appends one new item</td>
+            </tr>
+            <tr>
+              <td>Modify</td>
+              <td>map</td>
+              <td>Replaces one item and keeps the same array length</td>
+            </tr>
+            <tr>
+              <td>Delete</td>
+              <td>filter</td>
+              <td>Removes one item and makes a shorter array</td>
+            </tr>
+          </tbody>
+        </table>
 
         <h3>Create the initial item array</h3>
         <pre>
@@ -255,6 +319,122 @@ const [items, setItems] = useState(initItems)`}</code>
           can detect the state change and render the new row.
         </p>
 
+        <h3>Modify one item with map</h3>
+        <pre>
+          <code>{`function modifyItem(targetIndex) {
+  setItems((previousItems) => {
+    return previousItems.map((currentItem, currentIndex) => {
+      if (currentIndex === targetIndex) {
+        return {
+          ...currentItem,
+          amount: Number(currentItem.amount) + 1,
+        }
+      }
+
+      return currentItem
+    })
+  })
+}`}</code>
+        </pre>
+        <p>
+          <code>map</code> always returns a new array with the same number of
+          items. It visits every item and asks what value should go into the new
+          array at that position.
+        </p>
+        <p>
+          <code>targetIndex</code> is the row that the user clicked.{' '}
+          <code>currentIndex</code> is the row that <code>map</code> is
+          currently visiting.
+        </p>
+        <p>
+          When the indexes match, the function returns a new object. The object
+          spread <code>...currentItem</code> copies the existing properties.
+          The following <code>amount</code> property replaces only the old
+          amount.
+        </p>
+        <p>
+          When the indexes do not match, the function returns{' '}
+          <code>currentItem</code> unchanged. This is why only one row is
+          modified.
+        </p>
+        <p>
+          Input values are strings, so <code>Number(...)</code> converts the
+          amount before adding <code>1</code>. Without this conversion, the{' '}
+          <code>+</code> operator could join strings instead of adding numbers.
+        </p>
+
+        <h3>How this matches the professor&apos;s screenshot</h3>
+        <pre>
+          <code>{`setHobbies((previousHobbies) => {
+  return previousHobbies.map((value, currentIndex) => {
+    if (currentIndex === targetIndex) {
+      return event.target.checked
+    }
+
+    return value
+  })
+})`}</code>
+        </pre>
+        <p>
+          The screenshot modifies an array of checkbox values. At the matching
+          index, it returns the new checked value. At every other index, it
+          returns the old value.
+        </p>
+        <p>
+          The item-list code uses the same pattern. The only difference is that
+          each item is an object, so the matching position returns a new
+          modified object instead of a boolean.
+        </p>
+
+        <h3>Delete one item with filter</h3>
+        <pre>
+          <code>{`function deleteItem(targetIndex) {
+  setItems((previousItems) => {
+    return previousItems.filter(
+      (currentItem, currentIndex) =>
+        currentIndex !== targetIndex
+    )
+  })
+}`}</code>
+        </pre>
+        <p>
+          <code>filter</code> creates a new array and keeps only values that
+          pass its test. The test returns <code>true</code> for indexes that are
+          not the target, so those items stay.
+        </p>
+        <p>
+          The test returns <code>false</code> for the target index, so that item
+          is left out of the new array. The old state array is not changed.
+        </p>
+
+        <h3>The three important state-array patterns</h3>
+        <pre>
+          <code>{`// ADD: old items plus one new item
+setItems((previousItems) => [
+  ...previousItems,
+  newItem,
+])
+
+// MODIFY: replace the matching item
+setItems((previousItems) =>
+  previousItems.map((item, index) =>
+    index === targetIndex ? modifiedItem : item
+  )
+)
+
+// DELETE: keep every item except the matching item
+setItems((previousItems) =>
+  previousItems.filter(
+    (item, index) => index !== targetIndex
+  )
+)`}</code>
+        </pre>
+        <p>
+          These patterns all use a functional setter because the next array
+          depends on the previous array. They all return a new array instead of
+          changing the existing state array.
+        </p>
+
         <h3>Render every item with map</h3>
         <pre>
           <code>{`items.map((item, index) => (
@@ -323,11 +503,38 @@ return <div>{printHi()}</div>`}</code>
           <li>The user types a name and amount.</li>
           <li>The change handlers save both input values in state.</li>
           <li>The user clicks Add.</li>
-          <li>The handler creates `newItem` from the two state values.</li>
+          <li>
+            The handler creates <code>newItem</code> from the two state values.
+          </li>
           <li>The state setter receives the previous items array.</li>
           <li>The spread operator creates a new array with the new item.</li>
           <li>React renders again because the items state changed.</li>
-          <li>`map` creates a table row for every item in the new array.</li>
+          <li>
+            <code>map</code> creates a table row for every item in the new
+            array.
+          </li>
+        </ol>
+
+        <h3>How modifying one item moves through the code</h3>
+        <ol>
+          <li>The user clicks Add 1 to amount on one row.</li>
+          <li>The click passes that row&apos;s index to `modifyItem`.</li>
+          <li>The state setter receives the previous items array.</li>
+          <li>`map` visits every item and index.</li>
+          <li>The matching index returns a new object with a new amount.</li>
+          <li>Every other index returns its original item.</li>
+          <li>React renders the new array with one modified row.</li>
+        </ol>
+
+        <h3>How deleting one item moves through the code</h3>
+        <ol>
+          <li>The user clicks Delete on one row.</li>
+          <li>The click passes that row&apos;s index to `deleteItem`.</li>
+          <li>The state setter receives the previous items array.</li>
+          <li>`filter` visits every item and index.</li>
+          <li>The matching index fails the test and is left out.</li>
+          <li>Every other item passes the test and stays.</li>
+          <li>React renders the shorter array.</li>
         </ol>
       </div>
       {/* ========== CODE EXPLANATION ENDS HERE ========== */}
@@ -335,4 +542,4 @@ return <div>{printHi()}</div>`}</code>
   )
 }
 
-export default ItemListDemo03
+export default Demo03ItemList

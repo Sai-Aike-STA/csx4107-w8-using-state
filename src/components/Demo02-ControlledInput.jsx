@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function RegisterDemo02() {
+function Demo02ControlledInput() {
   // State is the single source of truth for the input and the output.
   const [firstname, setFirstname] = useState('')
 
@@ -148,4 +148,4 @@ function RegisterDemo02() {
   )
 }
 
-export default RegisterDemo02
+export default Demo02ControlledInput

@@ -1,7 +1,7 @@
 import './App.css'
-import CounterDemo01 from './components/CounterDemo-01.jsx'
-import RegisterDemo02 from './components/RegisterDemo-02.jsx'
-import ItemListDemo03 from './components/ItemListDemo-03.jsx'
+import Demo01Counter from './components/Demo01-Counter.jsx'
+import Demo02ControlledInput from './components/Demo02-ControlledInput.jsx'
+import Demo03ItemList from './components/Demo03-ItemList.jsx'
 import State from './State.jsx'
 
 function App() {
@@ -24,9 +24,9 @@ function App() {
 
         <br/>
       <h2 className="reference-heading">Explained reference demos</h2>
-      <CounterDemo01 />
-      <RegisterDemo02 />
-      <ItemListDemo03 />
+      <Demo01Counter />
+      <Demo02ControlledInput />
+      <Demo03ItemList />
     </main>
   )
 }
