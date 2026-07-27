@@ -7,10 +7,11 @@ Local repo name: `csx4107-w8-using-state`
 
 ## What this repo demonstrates
 
-The app contains two small examples:
+The app contains three explained examples:
 
 1. `CounterDemo-01.jsx` shows how `useState` remembers a number and how a setter updates the UI.
 2. `RegisterDemo-02.jsx` shows a controlled input whose value is stored in state.
+3. `ItemListDemo-03.jsx` shows how to add objects to a state array and render them with `map`.
 
 Each example has a working demo followed by notes that explain the important code, similar to the Week 5 jQuery reference demos.
 

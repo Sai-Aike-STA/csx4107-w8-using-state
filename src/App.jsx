@@ -1,6 +1,7 @@
 import './App.css'
 import CounterDemo01 from './components/CounterDemo-01.jsx'
 import RegisterDemo02 from './components/RegisterDemo-02.jsx'
+import ItemListDemo03 from './components/ItemListDemo-03.jsx'
 import State from './State.jsx'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <h2 className="reference-heading">Explained reference demos</h2>
       <CounterDemo01 />
       <RegisterDemo02 />
+      <ItemListDemo03 />
     </main>
   )
 }
