@@ -15,6 +15,18 @@ The app contains three explained examples:
 
 Each example has a working demo followed by notes that explain the important code, similar to the Week 5 jQuery reference demos.
 
+## Simplified demo versions
+
+Beginner-friendly versions are available in `src/components/simplified-demos`:
+
+1. `Demo01-Counter-Simplified.jsx`
+2. `Demo02-ControlledInput-Simplified.jsx`
+3. `Demo03-ItemList-Simplified.jsx`
+
+These files cover the same main concepts as the full demos, but they use simpler comments, shorter explanations, smaller code examples, and easier vocabulary. Technical terms are still included and explained in beginner-friendly language.
+
+The main app renders the full demos first and then renders the three simplified versions. This allows the detailed and beginner-friendly versions to be compared on the same page.
+
 ## Main state pattern
 
 ```jsx
