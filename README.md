@@ -5,6 +5,10 @@ Practice: **Using State**
 
 Local repo name: `csx4107-w8-using-state`
 
+GitHub repository: https://github.com/Sai-Aike-STA/csx4107-w8-using-state
+
+Link to hosted site: https://sai-aike-sta.github.io/csx4107-w8-using-state/
+
 ## What this repo demonstrates
 
 The app contains four explained examples:
@@ -57,3 +61,5 @@ npm run dev
 ```bash
 npm run build
 ```
+
+Pushing to `main` runs the GitHub Actions workflow and deploys the built `dist` directory to GitHub Pages.
