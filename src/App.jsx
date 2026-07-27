@@ -2,10 +2,12 @@ import './App.css'
 import Demo01Counter from './components/Demo01-Counter.jsx'
 import Demo02ControlledInput from './components/Demo02-ControlledInput.jsx'
 import Demo03ItemList from './components/Demo03-ItemList.jsx'
+import Demo04UseEffect from './components/Demo04-UseEffect.jsx'
 import State from './State.jsx'
 import Demo01CounterSimplified from "./components/simplified-demos/Demo01-Counter-Simplified.jsx";
 import Demo02ControlledInputSimplified from "./components/simplified-demos/Demo02-ControlledInput-Simplified.jsx";
 import Demo03ItemListSimplified from "./components/simplified-demos/Demo03-ItemList-Simplified.jsx";
+// import Demo04UseEffectSimplified from './components/simplified-demos/Demo04-UseEffect-Simplified.jsx'
 
 function App() {
   return (
@@ -30,11 +32,13 @@ function App() {
       <Demo01Counter />
       <Demo02ControlledInput />
       <Demo03ItemList />
+      <Demo04UseEffect />
 
-        <h1> Simplified versions</h1>
-        <Demo01CounterSimplified/>
-        <Demo02ControlledInputSimplified />
-        <Demo03ItemListSimplified />
+        {/*<h1> Simplified versions</h1>*/}
+        {/*<Demo01CounterSimplified/>*/}
+        {/*<Demo02ControlledInputSimplified />*/}
+        {/*<Demo03ItemListSimplified />*/}
+        {/*<Demo04UseEffectSimplified />*/}
     </main>
   )
 }
